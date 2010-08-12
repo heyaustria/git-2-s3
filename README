@@ -1,7 +1,6 @@
 = Introduction
 
-This gem is based off of Capistrano_s3 gem found at Github. This gem pushes each file in your repository to s3 whereas the
-Capistrano_s3 gem compresses your repository and pushes to s3 as a single compressed file.
+This gem is based off of Capistrano_s3 gem found at Github. This gem pushes each file in your repository to s3 whereas the Capistrano_s3 gem compresses your repository and pushes to s3 as a single compressed file.
 
 Git_2_S3 is a capistrano deployment strategy that will:
 
