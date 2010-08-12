@@ -56,6 +56,10 @@ module Capistrano
           end
 
         end
+        
+        def package_name
+          @package_name ||= "#{configuration[:application]}_#{revision}.tgz"
+        end
 
         def package_path
           @package_path ||= File.join(tmpdir, package_name)
