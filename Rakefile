@@ -6,7 +6,7 @@ require 'rake/gempackagetask'
 
 require File.join(File.dirname(__FILE__), 'lib', 'version')
 
-PKG_NAME      = "git_2_s3"
+PKG_NAME      = "git-2-s3"
 PKG_BUILD     = ENV['PKG_BUILD'] ? '.' + ENV['PKG_BUILD'] : ''
 PKG_VERSION   = Git_2_S3::Version::STRING + PKG_BUILD
 PKG_FILE_NAME = "#{PKG_NAME}-#{PKG_VERSION}"
