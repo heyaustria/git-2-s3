@@ -1,0 +1,30 @@
+= Introduction
+
+This gem is based off of Capistrano_s3 gem found at Github. This gem pushes each file in your repository to s3 whereas the
+Capistrano_s3 gem compresses your repository and pushes to s3 as a single compressed file.
+
+Git_2_S3 is a capistrano deployment strategy that will:
+
+    * git clone locally
+    * push the files to S3
+    * each server pulls the files from S3 
+
+This allows one to push a github repository to Amazon's S3 Data storage.
+
+= Installation
+  gem install git_2_s3
+
+To use it, specify properties in <tt>config/deploy.rb</tt>:
+  set :deploy_via, :s3_bucket
+  set :deploy_s3_bucket, 'com.example.releases' # The name of the S3 bucket that should get releases
+  s3_config = YAML::load(ERB.new(IO.read("secret/s3.yml")).result) # Follow this pattern and don't check in your secrets
+  # s3_config = { 'AWS_ACCOUNT_NUMBER' => '1234-5678-9012', 'AWS_ACCESS_KEY_ID' => 'ABCDEFGHIJKLMNOPQRST', 'AWS_SECRET_ACCESS_KEY' => 'abcdefghijklmnopqrstuvwxyz01234567890ABC' }
+  set :s3_config, s3_config
+
+Now regular Capistrano deployment tasks will go to S3
+
+= About
+
+Author:: Kurt Didenhover - kdidenhover at [nospam] gmail dt com
+License:: Distributed under MIT License
+Copyright:: 2010 Kurt Didenhover
