@@ -23,8 +23,6 @@ module Capistrano
           logger.debug "#{configuration[:release_path]} #{File.basename(configuration[:release_path])}"
           put_package
           
-          run "#{aws_environment} s3cmd get #{bucket_name}:#{package_name} #{remote_filename}"
-          run "mkdir #{configuration[:release_path]} && cd #{configuration[:release_path]} && #{decompress(remote_filename).join(" ")} && rm #{remote_filename}"
           logger.debug "done!"
         end
 
@@ -47,22 +45,8 @@ module Capistrano
 
           Dir.chdir(destination)
           
-          # Put to S3
           logger.trace "pushing repo contents to S3 bucket #{bucket_name}"
-          Dir.foreach(destination) do |entry|
-            name = File.basename(entry)
-            next if name == "." || name == ".." || name == ".git"
-            system("s3cmd put #{bucket_name}:#{name} #{package_path}")
-          end
-
-        end
-        
-        def package_name
-          @package_name ||= "#{configuration[:application]}_#{revision}.tgz"
-        end
-
-        def package_path
-          @package_path ||= File.join(tmpdir, package_name)
+          system("s3sync -r --exclude='.git' #{destination}/ #{bucket_name}: ")
         end
         
         def bucket_name

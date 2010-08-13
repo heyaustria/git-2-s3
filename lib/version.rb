@@ -2,7 +2,7 @@ module Git_2_S3 #:nodoc:
   module Version #:nodoc:
     MAJOR = 0
     MINOR = 1
-    TINY  = 1
+    TINY  = 3
 
     STRING = [MAJOR, MINOR, TINY].join('.')
   end

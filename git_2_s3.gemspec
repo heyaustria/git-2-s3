@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
 
   s.name = 'git-2-s3'
-  s.version = '0.1.2'
+  s.version = '0.1.3'
   s.platform = Gem::Platform::RUBY
   s.summary = "A deployment strategy to S3 from github using capistrano"
   s.description = "A deployment strategy that takes a github repository and pushes the files into an S3 bucket using capistrano"
